@@ -45,6 +45,42 @@
   </style>
 
   <script>
+
+    
+
+    document.querySelector('input[type="color"]').addEventListener('change', (e) => {
+      const style = document.createElement('style');
+      document.head.appendChild(style)
+      style.sheet.insertRule(`
+        .hl {
+          color: ${e.target.value}
+        }; 
+        img {
+          background: ${e.target.value}
+        }`
+      )
+    })
+
+    document.querySelector('input[name="blur"]').addEventListener('change', (e) => {
+      const style = document.createElement('style');
+      document.head.appendChild(style)
+      style.sheet.insertRule(`
+        img {
+          filter: blur(${e.target.value}px)
+        }`
+      )
+    })
+
+    document.querySelector('input[name="spacing"]').addEventListener('change', (e) => {
+      const style = document.createElement('style');
+      document.head.appendChild(style)
+      style.sheet.insertRule(`
+        img {
+          padding: ${e.target.value}%
+        }`
+      )
+    })
+
   </script>
 
 </body>
