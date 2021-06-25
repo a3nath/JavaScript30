@@ -26,6 +26,23 @@
       misc styles, nothing to do with CSS variables
     */
 
+    :root {
+      --base : 'yellow';
+      --spacing: '5px';
+      --blur: '1px';
+    }
+
+    img {
+      background: var(--base);
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+  
+    }
+
+    .hl{
+      color: var(--base)
+    }
+
     body {
       text-align: center;
       background: #193549;
@@ -46,40 +63,16 @@
 
   <script>
 
-    
+    const inputArr = document.querySelectorAll('input')
 
-    document.querySelector('input[type="color"]').addEventListener('change', (e) => {
-      const style = document.createElement('style');
-      document.head.appendChild(style)
-      style.sheet.insertRule(`
-        .hl {
-          color: ${e.target.value}
-        }; 
-        img {
-          background: ${e.target.value}
-        }`
-      )
-    })
+    function changeHandler(){
+      const datatype = this.dataset.sizing || ''
+      console.log(this)
+      console.log(this.name)
+      document.documentElement.style.setProperty(`--${this.name}`,`${this.value}${datatype}`)
+    }
 
-    document.querySelector('input[name="blur"]').addEventListener('change', (e) => {
-      const style = document.createElement('style');
-      document.head.appendChild(style)
-      style.sheet.insertRule(`
-        img {
-          filter: blur(${e.target.value}px)
-        }`
-      )
-    })
-
-    document.querySelector('input[name="spacing"]').addEventListener('change', (e) => {
-      const style = document.createElement('style');
-      document.head.appendChild(style)
-      style.sheet.insertRule(`
-        img {
-          padding: ${e.target.value}%
-        }`
-      )
-    })
+    inputArr.forEach(input => input.addEventListener('change', changeHandler));
 
   </script>
 
